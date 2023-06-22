@@ -16,3 +16,13 @@ jobs:
       run: |
         echo ${{ steps.ip.outputs.ipv4 }}
         echo ${{ steps.ip.outputs.ipv6 }}
+        
+    - name: Get Public IP
+      id: publicip
+      run: |
+        response=$(curl -s canhazip.com)
+        echo "ipv4='$response'" >> "$GITHUB_OUTPUT"
+
+    - name: print Public IP
+      run: |
+        echo ${{ steps.ip.outputs.ipv4 }}
